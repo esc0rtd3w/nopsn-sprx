@@ -25,7 +25,7 @@
 
 
 
-
+// Create Thread Function
 sys_ppu_thread_t id;
 
 sys_ppu_thread_t create_thread(void (*entry)(uint64_t), int priority, size_t stacksize, const char* threadname)
@@ -41,29 +41,34 @@ sys_ppu_thread_t create_thread(void (*entry)(uint64_t), int priority, size_t sta
     return id;
 }
 
+// Module Info [name, attribute, major, minor]
+SYS_MODULE_INFO( nopsn, 0, 0, 1);
 
-SYS_MODULE_INFO( nopsn, 0, 1, 1);
+// Module Start [funcname]
+SYS_MODULE_START( _nopsn_main_prx_entry );
 
-SYS_MODULE_START( _nopsn_prx_entry );
-
+// Declare Library?? [libname, attribute, stubfile]
 SYS_LIB_DECLARE_WITH_STUB( LIBNAME, SYS_LIB_AUTO_EXPORT, STUBNAME );
 
+// Export Library Functions?? [funcname, libname]
 SYS_LIB_EXPORT( _nopsn_export_function, LIBNAME );
 SYS_LIB_EXPORT( _noads_export_function, LIBNAME );
 
 
-// An exported function is needed to generate the project's PRX stub export library
+// NoPSN Export Function
 extern "C" int _nopsn_export_function(void)
 {
     return CELL_OK;
 }
 
+// NoAds Export Function
 extern "C" int _noads_export_function(void)
 {
     return CELL_OK;
 }
 
 
+// NoPSN Main Thread
 void thread_nopsn(uint64_t arg)
 {		
 	
@@ -131,6 +136,7 @@ void thread_nopsn(uint64_t arg)
 }
 
 
+// NoAds Main Thread
 void thread_noads(uint64_t arg)
 {		
 	
@@ -157,13 +163,16 @@ void thread_noads(uint64_t arg)
 
 
 
-extern "C" int _nopsn_prx_entry(void)
+extern "C" int _nopsn_main_prx_entry(void)
 {
-
+	// Test Message
 	//cellMsgDialogOpen2(0, "This Is A Test", 0, 0, 0);
 	
-	create_thread(thread_nopsn, 0x4AA, 0x6000, "NoPSN");
-	create_thread(thread_noads, 0x4AB, 0x6000, "NoPSN_Helper__Ad_Removal");
+	// Create NoPSN Thread
+	create_thread(thread_nopsn, 0x4AA, 0x6000, "NoPSN___MAIN");
+
+	// Create NoAds Thread
+	create_thread(thread_noads, 0x4AB, 0x6000, "NoPSN___AD_REMOVAL");
 	return 0;
 
     return SYS_PRX_RESIDENT;
