@@ -17,6 +17,7 @@
 #include "cell.h"
 #include "core.h"
 //#include "dialog.h"
+#include "messages.h"
 #include "patches.h"
 #include "timer.h"
 
@@ -75,7 +76,7 @@ void thread_entry(uint64_t arg)
 		   Patch(NPEB01229);
 		   Patch(NPJB00286);
 
-		   
+		   //PrintToXMB("YouTube NoPSN Patch Successfully Applied");
 
            sleep(5000);
 

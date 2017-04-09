@@ -1,8 +1,9 @@
 #pragma once
 
-#include <sysutil/sysutil_msgdialog.h>
+#include <sys/return_code.h>
 #include <sysutil/sysutil_oskdialog.h>
 #include <sysutil/sysutil_oskdialog_ext.h>
+#include <sysutil/sysutil_msgdialog.h>
 
 #include <sys/sys_time.h>
 #include <sys/syscall.h>
@@ -68,8 +69,6 @@
 #include <sys/timer.h>
 #include <sys/types.h>
 
-#include <sysutil/sysutil_oskdialog.h>
-#include <sysutil/sysutil_msgdialog.h>
 //#include <sysutil/sysutil_rec.h>
 //#include <sysutil/sysutil_video_upload.h>
 

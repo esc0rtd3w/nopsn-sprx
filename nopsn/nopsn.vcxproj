@@ -40,7 +40,7 @@
       <UserPreprocessorDefinitions>_DEBUG;__CELL_ASSERT__;%(UserPreprocessorDefinitions);</UserPreprocessorDefinitions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <PreprocessorDefinitions>%(UserPreprocessorDefinitions);$(BuiltInDefines);__INTELLISENSE__;%(PreprocessorDefinitions);</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SCE_PS3_ROOT)\target\ppu\lib\libio_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\libm.a;$(SN_PS3_PATH)\ppu\lib\sn\libsn.a;$(SCE_PS3_ROOT)\target\ppu\lib\libc_stub.a;$(SCE_PS3_ROOT)\target\ppu\lib\libc.a;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -58,6 +58,7 @@
     <ClInclude Include="cell.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="dialog.h" />
+    <ClInclude Include="messages.h" />
     <ClInclude Include="noads.h" />
     <ClInclude Include="nopsn.h" />
     <ClInclude Include="patches.h" />
