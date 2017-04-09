@@ -75,6 +75,10 @@ void thread_entry(uint64_t arg)
 		   Patch(NPEB01229);
 		   Patch(NPJB00286);
 
+		   
+
+           sleep(5000);
+
 		   // TuneIn Radio
            //sleep(wait_TuneInRadio);
 		   //Patch(NPUP10042);

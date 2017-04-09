@@ -63,7 +63,7 @@ bool cstrcmp(const char* s1, const char* s2)
 
 int sys_ppu_thread_exit()
 {
-system_call_1(41, 0);
+	system_call_1(41, 0);
 	return_to_user_prog(int);
 }
 
