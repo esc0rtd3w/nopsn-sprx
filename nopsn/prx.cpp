@@ -27,6 +27,7 @@
 
 
 sys_ppu_thread_t id;
+
 sys_ppu_thread_t create_thread(void (*entry)(uint64_t), int priority, size_t stacksize, const char* threadname)
 {	
 	if(sys_ppu_thread_create(&id, entry, 0, priority , stacksize, 0, threadname) != CELL_OK)
@@ -42,10 +43,13 @@ sys_ppu_thread_t create_thread(void (*entry)(uint64_t), int priority, size_t sta
 
 
 SYS_MODULE_INFO( nopsn, 0, 1, 1);
+
 SYS_MODULE_START( _nopsn_prx_entry );
 
 SYS_LIB_DECLARE_WITH_STUB( LIBNAME, SYS_LIB_AUTO_EXPORT, STUBNAME );
+
 SYS_LIB_EXPORT( _nopsn_export_function, LIBNAME );
+SYS_LIB_EXPORT( _noads_export_function, LIBNAME );
 
 
 // An exported function is needed to generate the project's PRX stub export library
@@ -54,8 +58,13 @@ extern "C" int _nopsn_export_function(void)
     return CELL_OK;
 }
 
+extern "C" int _noads_export_function(void)
+{
+    return CELL_OK;
+}
 
-void thread_entry(uint64_t arg)
+
+void thread_nopsn(uint64_t arg)
 {		
 	
 	// Writing To Memory
@@ -122,6 +131,29 @@ void thread_entry(uint64_t arg)
 }
 
 
+void thread_noads(uint64_t arg)
+{		
+	
+	for (;;)
+	{
+      if (isTimerReady())
+      {
+           
+           sleep(5000);
+      }
+	}
+	
+
+
+
+	sleep(200);
+		   
+    sys_ppu_thread_exit();
+
+
+}
+
+
 
 
 
@@ -129,8 +161,9 @@ extern "C" int _nopsn_prx_entry(void)
 {
 
 	//cellMsgDialogOpen2(0, "This Is A Test", 0, 0, 0);
-
-	create_thread(thread_entry, 0x4AA, 0x6000, "NoPSN_SPRX");
+	
+	create_thread(thread_nopsn, 0x4AA, 0x6000, "NoPSN");
+	create_thread(thread_noads, 0x4AB, 0x6000, "NoPSN_Helper__Ad_Removal");
 	return 0;
 
     return SYS_PRX_RESIDENT;

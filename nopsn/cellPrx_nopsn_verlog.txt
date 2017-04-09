@@ -12,3 +12,13 @@ logging on
 removed_entry_check on
 target_version_check on
   0x9f4d784b F/0 8 645c68e38cf6185590dbd510f88e56c0de0738e9 .text _nopsn_export_function
+#
+#  Sun Apr 09 17:49:40 2017
+#  cellPrx_nopsn: attr=0x1, nvar=0, nfunc=2, ntls=0 levels=0x1 stubfilename=cellPrx_nopsn_stub
+#      generate by ppu-lv2-prx-libgen.exe (1.14.4.7 2010-07-06 21:08:16, 2008-04-01 20:38:42)
+#  target_version_check on,  removed_entry_check on,  logging on
+#  log_version_update on
+#
+version 0x0002
+#
+  0x2fa88833 F/0 8 645c68e38cf6185590dbd510f88e56c0de0738e9 .text _noads_export_function
