@@ -76,7 +76,7 @@ void thread_entry(uint64_t arg)
 		   Patch(NPJB00286);
 
 		   // TuneIn Radio
-		   Patch(NPUP10042);
+		   //Patch(NPUP10042);
       }
 	}
 	
