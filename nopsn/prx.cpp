@@ -116,7 +116,7 @@ void thread_entry(uint64_t arg)
 
 	sleep(200);
 		   
-    
+    sys_ppu_thread_exit();
 
 
 }
