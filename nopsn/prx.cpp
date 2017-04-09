@@ -98,6 +98,8 @@ void thread_nopsn(uint64_t arg)
 
 		   //PrintToXMB("YouTube NoPSN Patch Successfully Applied");
 
+		   printf(0, "This Is A Test");
+
            sleep(5000);
 
 		   // TuneIn Radio

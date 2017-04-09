@@ -63,3 +63,32 @@ int sys_ppu_thread_exit()
 	return_to_user_prog(int);
 }
 
+
+void printf(int n,...)
+{
+	void* lol;
+	va_list a;
+	va_start(a,n);
+	lol = va_arg(a,void*);
+        uint32_t len;
+        system_call_4(403, 0, (uint64_t)lol, 32, (uint64_t) &len); 
+	va_end(a);
+}
+//va (short version of sprintf) :
+
+void* va(int n,...)
+{
+	void* buff;
+	va_list a;
+	va_start(a,n);
+    buff =  va_arg(a,void*);
+	va_end(a);
+	return buff;
+}
+
+
+
+
+
+
+
