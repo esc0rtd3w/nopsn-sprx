@@ -68,14 +68,15 @@ void thread_entry(uint64_t arg)
 	{
       if (isTimerReady())
       {
-           sleep(5000);
            
 		   // YouTube
+           sleep(wait_YouTube);
 		   Patch(NPUP10028);
 		   Patch(NPEB01229);
 		   Patch(NPJB00286);
 
 		   // TuneIn Radio
+           //sleep(wait_TuneInRadio);
 		   //Patch(NPUP10042);
       }
 	}

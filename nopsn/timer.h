@@ -1,6 +1,14 @@
 #pragma once
 
 
+// App Timing For Patching (in milliseconds)
+enum AppTimerWait
+{
+	wait_TuneInRadio = 0,
+	wait_YouTube = 5000,
+};
+
+
 //Timer
 class Timer
 {

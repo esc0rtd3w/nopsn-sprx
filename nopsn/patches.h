@@ -44,20 +44,20 @@ void Patch(int cid)
 
 		// YouTube
 		case NPUP10028:
-			WriteMemoryDirect(NPUP10028_a[0], NPUP10028_v[0]);
+			WriteMemoryDirect(NPUP10028_a[0], nop);
 			break;
 		case NPEB01229:
-			WriteMemoryDirect(NPEB01229_a[0], NPEB01229_v[0]);
+			WriteMemoryDirect(NPEB01229_a[0], nop);
 			break;
 		case NPJB00286:
-			WriteMemoryDirect(NPJB00286_a[0], NPJB00286_v[0]);
+			WriteMemoryDirect(NPJB00286_a[0], nop);
 			break;
 
 		// TuneIn Radio
 		case NPUP10042:
-			WriteMemoryDirect(NPUP10042_a[0], NPUP10042_v[0]);
-			WriteMemoryDirect(NPUP10042_a[1], NPUP10042_v[1]);
-			WriteMemoryDirect(NPUP10042_a[2], NPUP10042_v[2]);
+			WriteMemoryDirect(NPUP10042_a[0], nop);
+			WriteMemoryDirect(NPUP10042_a[1], nop);
+			WriteMemoryDirect(NPUP10042_a[2], nop);
 			break;
 
 		default:
