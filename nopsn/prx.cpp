@@ -147,13 +147,14 @@ void thread_nopsn(uint64_t arg)
 // NoAds Main Thread
 void thread_noads(uint64_t arg)
 {		
-	
+	while (!threadClosed)
+	{
+
 	for (;;)
 	{
       if (isTimerReady())
       {
-           
-           sleep(5000);
+           //sleep(5000);
       }
 	}
 	
@@ -161,7 +162,9 @@ void thread_noads(uint64_t arg)
 
 
 	sleep(200);
-		   
+
+	}
+
     sys_ppu_thread_exit();
 
 
