@@ -16,12 +16,12 @@
 
 #include "cell.h"
 #include "core.h"
-//#include "dialog.h"
+#include "dialog.h"
 #include "messages.h"
 #include "patches.h"
 #include "timer.h"
 
-//using namespace Dialog;
+using namespace Dialog;
 
 
 
@@ -68,10 +68,17 @@ extern "C" int _noads_export_function(void)
 }
 
 
+bool threadClosed = false;
+
 // NoPSN Main Thread
 void thread_nopsn(uint64_t arg)
 {		
-	
+
+	while (!threadClosed)
+	{
+		//do stuff in here
+	}
+
 	// Writing To Memory
 	// 1 byte - *(char*)0x0000000 = 0x01; //Yes this is literately how you write the memory in C++.
 	// 2 bytes - *(short*)0x00000000 = 0x01;
@@ -90,7 +97,7 @@ void thread_nopsn(uint64_t arg)
 		   Patch(NPEB01229);
 		   Patch(NPJB00286);
 
-		   //PrintToXMB("YouTube NoPSN Patch Successfully Applied");
+		   PrintToXMB("YouTube NoPSN Patch Successfully Applied");
 
            sleep(5000);
 
@@ -176,4 +183,13 @@ extern "C" int _nopsn_main_prx_entry(void)
 	return 0;
 
     return SYS_PRX_RESIDENT;
+}
+
+
+extern "C" int stop(void)
+{
+	//Kill your thread
+	//Unhook your functions by restoring first 4 instructions
+	threadClosed = true;
+	return SYS_PRX_STOP_OK;
 }
