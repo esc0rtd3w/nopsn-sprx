@@ -76,8 +76,7 @@ void thread_nopsn(uint64_t arg)
 
 	while (!threadClosed)
 	{
-		//do stuff in here
-	}
+		
 
 	// Writing To Memory
 	// 1 byte - *(char*)0x0000000 = 0x01; //Yes this is literately how you write the memory in C++.
@@ -97,7 +96,7 @@ void thread_nopsn(uint64_t arg)
 		   Patch(NPEB01229);
 		   Patch(NPJB00286);
 
-		   PrintToXMB("YouTube NoPSN Patch Successfully Applied");
+		   //PrintToXMB("YouTube NoPSN Patch Successfully Applied");
 
            sleep(5000);
 
@@ -136,6 +135,8 @@ void thread_nopsn(uint64_t arg)
 	*/
 
 	sleep(200);
+
+	}
 		   
     sys_ppu_thread_exit();
 
