@@ -98,8 +98,7 @@ void thread_nopsn(uint64_t arg)
 			
 			if (seenPatchMessage == 0)
 			{
-				msgdialog_mode = MODE_STRING_OK;
-				Show("YouTube NoPSN Patch Successfully Applied");
+				PrintToXMB("YouTube NoPSN Patch Successfully Applied");
 				seenPatchMessage++;
 			}
 			
