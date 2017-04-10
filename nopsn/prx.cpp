@@ -77,35 +77,57 @@ void thread_nopsn(uint64_t arg)
 	while (!threadClosed)
 	{
 		
+		// Writing To Memory
+		// 1 byte - *(char*)0x0000000 = 0x01; //Yes this is literately how you write the memory in C++.
+		// 2 bytes - *(short*)0x00000000 = 0x01;
+		// 3 bytes - *(float*)0x00000000 = 0x01;
+		// 4 bytes - *(int*)0x00000000 = 0x01;
+		// 8 bytes - *(double*)0x00000000 = 0x01;
 
-	// Writing To Memory
-	// 1 byte - *(char*)0x0000000 = 0x01; //Yes this is literately how you write the memory in C++.
-	// 2 bytes - *(short*)0x00000000 = 0x01;
-	// 3 bytes - *(float*)0x00000000 = 0x01;
-	// 4 bytes - *(int*)0x00000000 = 0x01;
-	// 8 bytes - *(double*)0x00000000 = 0x01;
+		int seenPatchMessage = 0;
 
-	for (;;)
-	{
-      if (isTimerReady())
-      {
-           
-		   // YouTube
-           sleep(wait_YouTube);
-		   Patch(NPUP10028);
-		   Patch(NPEB01229);
-		   Patch(NPJB00286);
+		for (;;)
+		{
+		  if (isTimerReady())
+		  {
 
-		   //PrintToXMB("YouTube NoPSN Patch Successfully Applied");
+			//PrintToXMB("YouTube NoPSN Patch Successfully Applied");
+		
+			//printf(0, "This Is A Test");
 
-		   printf(0, "This Is A Test");
+			
+			if (seenPatchMessage == 0)
+			{
+				msgdialog_mode = MODE_STRING_OK;
+				Show("YouTube NoPSN Patch Successfully Applied");
+				seenPatchMessage++;
+			}
+			
 
-           sleep(5000);
+			/* Yes/No
+			msgdialog_mode = MODE_STRING_YESNO;
+			ShowYESNO("Apply NoPSN Patch Now?");
 
-		   // TuneIn Radio
-           //sleep(wait_TuneInRadio);
-		   //Patch(NPUP10042);
-      }
+			while(!Finished)
+			{
+				//
+			}
+
+			bool ret = YESNO; 
+			End();
+			*/
+
+
+			// YouTube
+			sleep(wait_YouTube);
+			Patch(NPUP10028);
+			Patch(NPEB01229);
+			Patch(NPJB00286);
+
+			// TuneIn Radio
+			//sleep(wait_TuneInRadio);
+			//Patch(NPUP10042);
+		  }
 	}
 	
 
