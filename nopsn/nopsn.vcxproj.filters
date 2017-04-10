@@ -38,12 +38,18 @@
     <ClInclude Include="messages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="printf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="prx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="printf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

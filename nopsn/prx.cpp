@@ -91,30 +91,33 @@ void thread_nopsn(uint64_t arg)
 		  if (isTimerReady())
 		  {
 
-			//PrintToXMB("YouTube NoPSN Patch Successfully Applied");
-		
-			//printf(0, "This Is A Test");
-
-			
 			if (seenPatchMessage == 0)
 			{
-				PrintToXMB("YouTube NoPSN Patch Successfully Applied");
+
+				//PrintToXMB("YouTube NoPSN Patch Successfully Applied");
+
+				char pid[254];
+				printf(pid, "%i", sys_process_getpid());
+				PrintToXMB(pid);
+				
+				/*
+				msgdialog_mode = MODE_STRING_YESNO;
+				ShowYESNO("Apply NoPSN Patch Now?");
+
+				while(!Finished)
+				{
+					//
+				}
+
+				bool ret = YESNO; 
+				
+				End();
+				*/
+
+				
 				seenPatchMessage++;
+
 			}
-			
-
-			/* Yes/No
-			msgdialog_mode = MODE_STRING_YESNO;
-			ShowYESNO("Apply NoPSN Patch Now?");
-
-			while(!Finished)
-			{
-				//
-			}
-
-			bool ret = YESNO; 
-			End();
-			*/
 
 
 			// YouTube
@@ -126,6 +129,7 @@ void thread_nopsn(uint64_t arg)
 			// TuneIn Radio
 			//sleep(wait_TuneInRadio);
 			//Patch(NPUP10042);
+			
 		  }
 	}
 	
