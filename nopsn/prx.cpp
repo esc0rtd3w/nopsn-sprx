@@ -68,6 +68,7 @@ extern "C" int _noads_export_function(void)
 }
 
 
+
 bool threadClosed = false;
 
 // NoPSN Main Thread
@@ -97,7 +98,7 @@ void thread_nopsn(uint64_t arg)
 				//PrintToXMB("YouTube NoPSN Patch Successfully Applied");
 
 				char pid[254];
-				printf(pid, "%i", sys_process_getpid());
+				sprintf(pid, "%i", sys_process_getpid());
 				PrintToXMB(pid);
 				
 				/*

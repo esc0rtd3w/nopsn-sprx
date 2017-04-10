@@ -1,4 +1,4 @@
-﻿//#ifdef DEBUG
+//#ifdef DEBUG
 
 /*
  * Copyright (c) 1995 Patrick Powell.
@@ -94,13 +94,13 @@
  * 	normal C string format, at least as far as I can tell from the Solaris
  * 	2.5 printf(3S) man page.
  */
-#include "printf.h"
+
 #include <cell/cell_fs.h>
 
 #include <stdlib.h>
 #include <limits.h>
 #include <stdarg.h>
-//#include "printf.h"
+#include "printf.h"
 
 #define HAVE_UNSIGNED_LONG_LONG_INT
 #define HAVE_STDINT_H
@@ -276,19 +276,13 @@ do {                                                                         \
 	(len)++;                                                             \
 } while (/* CONSTCOND */ 0)
 
-
-#include <string.h>
-
-namespace std
-{
-
-
 static void fmtstr(char *, size_t *, size_t, const char *, int, int, int);
 static void fmtint(char *, size_t *, size_t, INTMAX_T, int, int, int, int);
 static void printsep(char *, size_t *, size_t);
 static int getnumsep(int);
 static int convert(UINTMAX_T, char *, size_t, int, int);
 
+int ttyWrite(int channel, const char * message, int length, int * written);
 
 int vsnprintf(char *str, size_t size, const char *format, va_list args)
 {
@@ -806,7 +800,6 @@ int vsprintf(char *buf, const char *fmt, va_list args)
 	return vsnprintf(buf, INT_MAX, fmt, args);
 }
 
-
 int sprintf(char *buffer, const char *fmt, ...)
 {
 	va_list args;
@@ -865,56 +858,26 @@ int printf(const char *fmt, ...)
 }
 
 #else
+//extern int ttyWrite(int channel, const char* message, int length, int* written);
 
-int console_print(char* a_szText)
+int ttyWrite(int channel, const char * message, int length, int * written)
 {
-	uint32_t l_uiTextLen;
-	uint32_t l_uiWriteLen;
-
-	l_uiWriteLen	= 0;
-	//strlen
-	l_uiTextLen = 0;
-	while(a_szText[l_uiTextLen] != 0) l_uiTextLen++;
-	system_call_4(403, 0, (uint64_t)a_szText, l_uiTextLen, (uint64_t)&l_uiWriteLen);
-	return (l_uiTextLen == l_uiWriteLen);
+	system_call_4(403, (uint64_t)channel, (uint64_t)((uint32_t)message), (uint64_t)length, (uint64_t)((uint32_t)written));
+	return_to_user_prog(int);	
 }
-
-
-
 
 int printf(const char *fmt, ...)
 {
 	char strBuf[PRINTF_MAX];
-	int l_iLen;
-
 	va_list args;
+	int i, written = 0;
+
 	va_start(args, fmt);
-	
-	
-	vsnprintf(strBuf, PRINTF_MAX, fmt, args);	
-	
+	i = vsnprintf(strBuf, PRINTF_MAX, fmt, args);
 	va_end(args);
-	console_print(strBuf);
-	return 0;
+	ttyWrite(1, strBuf, i, &written);
+	return written;
 }
-
-
-/*
-void printf(int n, ...)
-{
-        void* newpf;
-        va_list a;
-        va_start(a,n);
-        lol = va_arg(a,void*);
-        uint32_t len;
-        system_call_4(403, 0, (uint64_t)newpf, 32, (uint64_t) &len);
-        va_end(a);
-}
-
-//printf(3,"ayy lmao","( ͡° ͜ʖ ͡°)",4);
-*/
- 
-};
 #endif /* DEBUG_FILE */
 
 //#endif /* DEBUG */

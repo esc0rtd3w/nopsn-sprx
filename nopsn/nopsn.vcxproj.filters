@@ -49,7 +49,7 @@
     <ClCompile Include="prx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="printf.cpp">
+    <ClCompile Include="printf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
