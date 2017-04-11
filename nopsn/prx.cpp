@@ -123,15 +123,18 @@ void thread_nopsn(uint64_t arg)
 			}
 
 
+			// TuneIn Radio
+			//sleep(waitPatch);
+			//Patch(NPUP10042);
+
 			// YouTube
-			sleep(wait_YouTube);
+			sleep(waitPatch);
 			Patch(NPUP10028);
 			Patch(NPEB01229);
 			Patch(NPJB00286);
 
-			// TuneIn Radio
-			//sleep(wait_TuneInRadio);
-			//Patch(NPUP10042);
+			
+			//PatchInfo NPUP10028_p = {"YouTube", "NPUP10028", "us", NPUP10028_a[0], NPUP10028_v[0]};
 			
 		  }
 	}

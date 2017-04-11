@@ -7,19 +7,29 @@
 int nop = 0x60000000;
 
 
+struct PatchInfo
+{
+	char* name;
+	char* cid;
+	char* region;
+	int addr;
+	int value;
+};
+
+
 // List of Regions
 enum Region
 {
-	US,
-	EU,
-	JP,
+	us,
+	eu,
+	jp,
 };
 
 // List of all PSN Apps by NAME
 enum Name
 {
-	TuneInRadio,
-	YouTube,
+	tunein_radio,
+	youtube,
 };
 
 
@@ -35,12 +45,18 @@ enum ContentID
 
 
 
-
 // NoPSN Main Patch Function
 void Patch(int cid)
 {
 	// Check App Name
 	switch (cid) {
+
+		// TuneIn Radio
+		case NPUP10042:
+			WriteMemoryDirect(NPUP10042_a[0], nop);
+			WriteMemoryDirect(NPUP10042_a[1], nop);
+			WriteMemoryDirect(NPUP10042_a[2], nop);
+			break;
 
 		// YouTube
 		case NPUP10028:
@@ -51,13 +67,6 @@ void Patch(int cid)
 			break;
 		case NPJB00286:
 			WriteMemoryDirect(NPJB00286_a[0], nop);
-			break;
-
-		// TuneIn Radio
-		case NPUP10042:
-			WriteMemoryDirect(NPUP10042_a[0], nop);
-			WriteMemoryDirect(NPUP10042_a[1], nop);
-			WriteMemoryDirect(NPUP10042_a[2], nop);
 			break;
 
 		default:
