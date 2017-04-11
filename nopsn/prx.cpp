@@ -98,7 +98,7 @@ void thread_nopsn(uint64_t arg)
 				//PrintToXMB("YouTube NoPSN Patch Successfully Applied");
 
 				char pid[254];
-				sprintf(pid, "%i", sys_process_getpid());
+				sprintf(pid, "---[ NoPSN SPRX Debug Output ]---\n\n\nCurrent Process ID: %X\n\n", sys_process_getpid());
 				PrintToXMB(pid);
 				
 				/*

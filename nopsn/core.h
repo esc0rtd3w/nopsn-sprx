@@ -1,5 +1,13 @@
 #pragma once
 
+#include "cell.h"
+#include "types.h"
+
+
+
+//u64 process_id = sys_process_getpid();
+
+
 
 struct opd_s
 {
@@ -84,6 +92,35 @@ void* va(int n,...)
     buff =  va_arg(a,void*);
 	va_end(a);
 	return buff;
+}
+
+
+
+
+
+
+/*
+ * Function:		ReadHex()
+ * File:			main.c
+ * Project:			ArtemisPS3-PRX
+ * Description:		Converts a hex string into an array of bytes
+ *					In cases where the len is less than 4, it will NOT (unlike ReadHexPartial) shift the value over such that something like "011" will be 0x01100000
+ * Arguments:
+ *	read:			buffer containing string
+ *	start:			start index of conversion within buffer
+ *	len:			length of hex string
+ *	buf:			buffer that will store the resulting byte/char array after conversion
+ *	bufSize:		allocated size of buf
+ * Return:			Returns pointer to buf
+ */
+char * ReadHex(char * read, int start, int len, char * buf, int bufSize)
+{
+	for (int x = start; x < (len + start); x += 2)
+	{
+		buf[(x - start)/2] = (unsigned char)((((unsigned char)read[x] < 0x41) ? ((unsigned char)read[x] - 0x30) : ((unsigned char)read[x] - 0x37)) << 4) | (unsigned char)(((unsigned char)read[x+1] < 0x41) ? ((unsigned char)read[x+1] - 0x30) : ((unsigned char)read[x+1] - 0x37));
+	}
+	
+	return buf;
 }
 
 
