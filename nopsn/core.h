@@ -7,12 +7,19 @@
 
 //u64 process_id = sys_process_getpid();
 
+int TOC;
 
+int UNK_TEXT_1 = 0x009AAE9C;
 
 struct opd_s
 {
 	int32_t sub;
 	int32_t toc;
+};
+
+struct timeval_32 {
+	u32 tv_sec;
+	s32 tv_usec;
 };
 
 

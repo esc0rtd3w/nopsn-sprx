@@ -18,6 +18,7 @@
 #include "core.h"
 #include "dialog.h"
 #include "messages.h"
+#include "natives.h"
 #include "patches.h"
 #include "timer.h"
 
@@ -100,7 +101,7 @@ void thread_nopsn(uint64_t arg)
 				char* stringPlaceholder;
 
 				char pid[254];
-				sprintf(pid, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\n", stringPlaceholder, sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid());
+				sprintf(pid, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\n", GetTOC(NPUP10028), stringPlaceholder, sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid());
 				PrintToXMB(pid);
 				
 				/*
@@ -128,13 +129,17 @@ void thread_nopsn(uint64_t arg)
 			//Patch(NPUP10042);
 
 			// YouTube
+			//GetTOC(NPUP10028);
+			//GetTOC(NPEB01229);
+			//GetTOC(NPJB00286);
+
 			sleep(waitPatch);
 			Patch(NPUP10028);
 			Patch(NPEB01229);
 			Patch(NPJB00286);
-
 			
-			//PatchInfo NPUP10028_p = {"YouTube", "NPUP10028", "us", NPUP10028_a[0], NPUP10028_v[0]};
+			//YouTube::UNK_TEXT_1("", 0, 0, 0, 0);
+			
 			
 		  }
 	}

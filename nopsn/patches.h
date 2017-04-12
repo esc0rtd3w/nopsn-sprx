@@ -7,15 +7,6 @@
 int nop = 0x60000000;
 
 
-struct PatchInfo
-{
-	char* name;
-	char* cid;
-	char* region;
-	int addr;
-	int value;
-};
-
 
 // List of Regions
 enum Region
@@ -48,7 +39,7 @@ enum ContentID
 // NoPSN Main Patch Function
 void Patch(int cid)
 {
-	// Check App Name
+	// Check Content ID
 	switch (cid) {
 
 		// TuneIn Radio
@@ -76,6 +67,35 @@ void Patch(int cid)
 }
 
 
+int GetTOC(int cid)
+{
+	int toc;
 
+	// Check Content ID
+	switch (cid) {
+
+		// TuneIn Radio
+		case NPUP10042:
+			toc = 0x0076E790;
+			break;
+
+		// YouTube
+		case NPUP10028:
+			toc = 0x012A27F8;
+			break;
+		case NPEB01229:
+			toc = 0x012A27F8;
+			break;
+		case NPJB00286:
+			toc = 0x012A27F8;
+			break;
+
+		default:
+			break;
+	};
+
+
+	return toc;
+}
 
 

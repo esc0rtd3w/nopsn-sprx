@@ -8,8 +8,6 @@
 // XXXX00000_v = Modified Bytes
 
 
-
-
 // TuneIn Radio
 int NPUP10042_a[] = {0x0000B700, 0x0000B708, 0x0000BB20};
 int NPUP10042_o[] = {0x4BFFF7C1, 0x408203EC, 0x4BFFF3A1};
