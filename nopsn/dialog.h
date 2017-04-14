@@ -277,7 +277,7 @@ namespace Keyboard
 		{
 			if(cellSysutilRegisterCallback( 0, sysutil_callback, NULL ) != 0) 
 			{	
-				console_write("\nError: Couldn't register the keyboard.\n");
+				//console_write("\nError: Couldn't register the keyboard.\n");
 			}
 			ret = cellOskDialogLoadAsync(SYS_MEMORY_CONTAINER_ID_INVALID, &dialogParam, &inputFieldInfo);
 			oskdialog_mode = MODE_RUNNING;
@@ -297,7 +297,7 @@ namespace Keyboard
 			inputFieldInfo.init_text = (uint16_t*)INIT_TEXT;      
 			if(cellSysutilUnregisterCallback(0) != 0) 
 			{
-				console_write("\nError: Couldn't unload the keyboard.\n");
+				//console_write("\nError: Couldn't unload the keyboard.\n");
 			}
 			oskdialog_mode = MODE_EXIT;
 		}

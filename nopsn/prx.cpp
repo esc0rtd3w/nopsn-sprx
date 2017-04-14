@@ -20,8 +20,10 @@
 #include "messages.h"
 #include "natives.h"
 #include "patches.h"
+#include "system.h"
 #include "timer.h"
 
+using namespace std;
 using namespace Dialog;
 
 
@@ -33,11 +35,11 @@ sys_ppu_thread_t create_thread(void (*entry)(uint64_t), int priority, size_t sta
 {	
 	if(sys_ppu_thread_create(&id, entry, 0, priority , stacksize, 0, threadname) != CELL_OK)
 	{
-		console_write("Thread creation failed\n");	
+		//console_write("Thread creation failed\n");	
 	}
 	else
 	{
-		console_write("Thread created\n");	
+		//console_write("Thread created\n");	
 	}	
     return id;
 }
@@ -69,7 +71,6 @@ extern "C" int _noads_export_function(void)
 }
 
 
-
 bool threadClosed = false;
 
 // NoPSN Main Thread
@@ -98,10 +99,19 @@ void thread_nopsn(uint64_t arg)
 
 				//PrintToXMB("YouTube NoPSN Patch Successfully Applied");
 
-				char* stringPlaceholder;
+				//sys_spu_elf_get_information();
 
-				char pid[254];
-				sprintf(pid, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\n", GetTOC(NPUP10028), stringPlaceholder, sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid());
+				//int buf;
+
+				
+
+				// Fahrenheit
+				//tempCell=int(1.8f*(float)temp+32.f);
+				//tempRSX=int(1.8f*(float)temp+32.f);
+
+				char pid[255];
+				//sprintf(pid, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\n", GetTOC(NPUP10028), (char*)sys_process_get_id(sys_process_getpid(), (u32*)500, 500, (size_t*)500), sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid());
+				sprintf(pid, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\nCell Temp: [%i C]     RSX Temp [%i C]\n\n", GetTOC(NPUP10028), "", sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid(), GetTempCell(), GetTempRSX());
 				PrintToXMB(pid);
 				
 				/*
@@ -122,6 +132,9 @@ void thread_nopsn(uint64_t arg)
 				seenPatchMessage++;
 
 			}
+
+			
+
 
 
 			// TuneIn Radio
@@ -192,7 +205,8 @@ void thread_noads(uint64_t arg)
 	{
       if (isTimerReady())
       {
-           //sleep(5000);
+		  sleep(200);
+          sys_ppu_thread_exit();
       }
 	}
 	
