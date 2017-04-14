@@ -11,8 +11,8 @@ void sleep(usecond_t time) ;
 
 // 0=CELL/1=RSX
 u64 sys_game_get_temperature(u32 _dev, u32 *_temp);
-u32 GetTempCell(const char* unit);
-u32 GetTempRSX(const char* unit);
+u32 GetTempCell(int unit);
+u32 GetTempRSX(int unit);
 
 /*
 int sys_process_get_status(sys_pid_t pid);

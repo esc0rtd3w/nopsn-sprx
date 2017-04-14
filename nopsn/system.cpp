@@ -139,42 +139,53 @@ u64 sys_game_get_temperature(u32 _dev, u32 *_temp)
 }
 
 
-u32 GetTempCell(const char* unit)
+u32 GetTempCell(int unit)
 {
 	u32 tempCell=0;
 
-	if (unit == "c" || unit == "C")
+	switch (unit)
 	{
-		sys_game_get_temperature(0, &tempCell);
-		tempCell=tempCell>>24;
-	}
 
-	if (unit == "f" || unit == "F")
-	{
-		sys_game_get_temperature(0, &tempCell);
-		tempCell=tempCell>>24;
-		tempCell=int(1.8f*(float)tempCell+32.f);
-	}
+		// Celcius
+		case 0:
+			sys_game_get_temperature(0, &tempCell);
+			tempCell=tempCell>>24;
+			break;
+		// Farenheit
+		case 1:
+			sys_game_get_temperature(0, &tempCell);
+			tempCell=tempCell>>24;
+			tempCell=int(1.8f*(float)tempCell+32.f);
+			break;
 
+		default:
+			break;
+	}
 
 	return tempCell;
 }
 
-u32 GetTempRSX(const char* unit)
+u32 GetTempRSX(int unit)
 {
 	u32 tempRSX=0;
 
-	if (unit == "c" || unit == "C")
+	switch (unit)
 	{
-		sys_game_get_temperature(0, &tempRSX);
-		tempRSX=tempRSX>>24;
-	}
 
-	if (unit == "f" || unit == "F")
-	{
-		sys_game_get_temperature(0, &tempRSX);
-		tempRSX=tempRSX>>24;
-		tempRSX=int(1.8f*(float)tempRSX+32.f);
+		// Celcius
+		case 0:
+			sys_game_get_temperature(1, &tempRSX);
+			tempRSX=tempRSX>>24;
+			break;
+		// Farenheit
+		case 1:
+			sys_game_get_temperature(1, &tempRSX);
+			tempRSX=tempRSX>>24;
+			tempRSX=int(1.8f*(float)tempRSX+32.f);
+			break;
+
+		default:
+			break;
 	}
 
 	return tempRSX;

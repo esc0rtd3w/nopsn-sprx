@@ -106,7 +106,7 @@ void thread_nopsn(uint64_t arg)
 				
 
 				char debug_stats[255];
-				sprintf(debug_stats, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\nCell Temp: [%i C]     RSX Temp [%i C]\n\n", GetTOC(NPUP10028), "", sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid(), GetTempCell("c"), GetTempRSX("c"));
+				sprintf(debug_stats, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\nCell Temp: [%i C]     RSX Temp [%i C]\n\n", GetTOC(NPUP10028), "", sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid(), GetTempCell(0), GetTempRSX(0));
 				PrintToXMB(debug_stats);
 				
 				/*
