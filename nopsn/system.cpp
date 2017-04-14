@@ -129,6 +129,8 @@ char * ReadHex(char * read, int start, int len, char * buf, int bufSize)
 	return buf;
 }
 
+
+// Get Temperatures
 // 0=CELL/1=RSX
 u64 sys_game_get_temperature(u32 _dev, u32 *_temp)
 {
@@ -137,20 +139,43 @@ u64 sys_game_get_temperature(u32 _dev, u32 *_temp)
 }
 
 
-u32 GetTempCell()
+u32 GetTempCell(const char* unit)
 {
 	u32 tempCell=0;
-	sys_game_get_temperature(0, &tempCell);
-	tempCell=tempCell>>24;
+
+	if (unit == "c" || unit == "C")
+	{
+		sys_game_get_temperature(0, &tempCell);
+		tempCell=tempCell>>24;
+	}
+
+	if (unit == "f" || unit == "F")
+	{
+		sys_game_get_temperature(0, &tempCell);
+		tempCell=tempCell>>24;
+		tempCell=int(1.8f*(float)tempCell+32.f);
+	}
+
 
 	return tempCell;
 }
 
-u32 GetTempRSX()
+u32 GetTempRSX(const char* unit)
 {
 	u32 tempRSX=0;
-	sys_game_get_temperature(1, &tempRSX);
-	tempRSX=tempRSX>>24;
+
+	if (unit == "c" || unit == "C")
+	{
+		sys_game_get_temperature(0, &tempRSX);
+		tempRSX=tempRSX>>24;
+	}
+
+	if (unit == "f" || unit == "F")
+	{
+		sys_game_get_temperature(0, &tempRSX);
+		tempRSX=tempRSX>>24;
+		tempRSX=int(1.8f*(float)tempRSX+32.f);
+	}
 
 	return tempRSX;
 }

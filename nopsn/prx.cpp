@@ -105,14 +105,9 @@ void thread_nopsn(uint64_t arg)
 
 				
 
-				// Fahrenheit
-				//tempCell=int(1.8f*(float)temp+32.f);
-				//tempRSX=int(1.8f*(float)temp+32.f);
-
-				char pid[255];
-				//sprintf(pid, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\n", GetTOC(NPUP10028), (char*)sys_process_get_id(sys_process_getpid(), (u32*)500, 500, (size_t*)500), sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid());
-				sprintf(pid, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\nCell Temp: [%i C]     RSX Temp [%i C]\n\n", GetTOC(NPUP10028), "", sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid(), GetTempCell(), GetTempRSX());
-				PrintToXMB(pid);
+				char debug_stats[255];
+				sprintf(debug_stats, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\nCell Temp: [%i C]     RSX Temp [%i C]\n\n", GetTOC(NPUP10028), "", sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid(), GetTempCell("c"), GetTempRSX("c"));
+				PrintToXMB(debug_stats);
 				
 				/*
 				msgdialog_mode = MODE_STRING_YESNO;
