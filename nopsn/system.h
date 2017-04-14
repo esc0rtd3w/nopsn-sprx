@@ -21,10 +21,12 @@ int sys_process_get_status(sys_pid_t pid);
 // 1=power,2=status or 3=disk
 int sys_sm_request_led(int led_id, uint8_t led_action);
 int sys_sm_control_led(uint8_t led_id, uint8_t led_action);
+int ControlLED(uint8_t led, uint8_t action);
 
-/*
-int _sys_process_get_paramsfo(uint8_t buffer[0x40]);
-*/
+int sys_process_get_status(sys_pid_t pid);
+
+int sys_process_get_paramsfo();
+
 
 /*
 int Memcpy(void* destination, const void* source, size_t size);

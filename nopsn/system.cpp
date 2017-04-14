@@ -23,13 +23,15 @@ int console_write(const char * s)
 }
 */
 
-/*
+
 int sys_process_get_status(sys_pid_t pid)
 {
 	system_call_1(4, pid);
 	return_to_user_prog(int);
 }
-*/
+
+
+
 
 // 1=power,2=status or 3=disk
 int sys_sm_request_led(int led_id, uint8_t led_action)
@@ -44,13 +46,23 @@ int sys_sm_control_led(uint8_t led_id, uint8_t led_action)
 	return_to_user_prog(int);
 }
 
-/*
-int _sys_process_get_paramsfo(uint8_t buffer[0x40])
+// (STATUS),2 (POWER)(red, green, red+green combined: looks like yellow);
+// 0,1,2,3 (off,on,blink fast, blink slow) 
+int ControlLED(uint8_t led, uint8_t action)
 {
-	system_call_1(buffer);
+	sys_sm_control_led(led, action);
+	return 0;
+}
+
+
+int sys_process_get_paramsfo()
+{
+	uint8_t buffer[64];
+	system_call_1(30, buffer[64]);
 	return_to_user_prog(int);
 }
-*/
+
+
 
 /*
 int Memcpy(void* destination, const void* source, size_t size)
