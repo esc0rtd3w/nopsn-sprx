@@ -25,8 +25,9 @@ int ControlLED(uint8_t led, uint8_t action);
 
 int sys_process_get_status(sys_pid_t pid);
 
-int sys_process_get_paramsfo();
+s32 sys_process_get_paramsfo();
 
+void GetProcessNumberOfObjects(u32 pid, size_t count);
 
 /*
 int Memcpy(void* destination, const void* source, size_t size);

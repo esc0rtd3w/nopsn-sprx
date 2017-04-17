@@ -55,14 +55,18 @@ int ControlLED(uint8_t led, uint8_t action)
 }
 
 
-int sys_process_get_paramsfo()
+uint8_t sfoBuffer[64];
+s32 sys_process_get_paramsfo()
 {
-	uint8_t buffer[64];
-	system_call_1(30, buffer[64]);
+	system_call_1(30, sfoBuffer[64]);
 	return_to_user_prog(int);
+
 }
 
-
+void GetProcessNumberOfObjects(u32 pid, size_t* count)
+{
+	sys_process_get_number_of_object(pid, count);
+}
 
 /*
 int Memcpy(void* destination, const void* source, size_t size)
