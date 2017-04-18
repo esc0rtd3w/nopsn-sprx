@@ -93,22 +93,51 @@ void thread_nopsn(uint64_t arg)
 		{
 		  if (isTimerReady())
 		  {
+			
+			
 
 			if (seenPatchMessage == 0)
 			{
 
-				//PrintToXMB("YouTube NoPSN Patch Successfully Applied");
+				// Wait For App To Load???
+				sleep(500);
+			
 
-				//sys_spu_elf_get_information();
+				// TuneIn Radio
+				//GetPatchValues(NPUP10042);
 
-				//u8* buf[64];
+				if (isTuneInRadio)
+				{
+					//GetTOC(NPUP10042);
 
-				
-				//sleep(30000);
+					//*(int*)NPUP10042_a = NPUP10042_v;
+					sleep(waitPatch);
+					Patch(NPUP10042);
+				}
+			
 
 
-				char debug_stats[300];
-				sprintf(debug_stats, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nStatus [%X]\n\nTOC: %X\n\nProcess Name: %s\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\nPARAM.SFO: [%X]\n\nCell Temp: [%i C]     RSX Temp [%i C]\n\n", sys_process_get_status(sys_process_getpid()), GetTOC(NPUP10028), "", sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid(), sys_process_get_paramsfo(), GetTempCell(0), GetTempRSX(0));
+				// YouTube
+				GetPatchValues(NPUP10028);
+				//GetPatchValues(NPEB01229);
+				//GetPatchValues(NPJB00286);
+
+				if (isYouTube)
+				{
+					//GetTOC(NPUP10028);
+					//GetTOC(NPEB01229);
+					//GetTOC(NPJB00286);
+
+					//*(int*)NPUP10028_a = NPUP10028_v;
+					sleep(waitPatch);
+					Patch(NPUP10028);
+					Patch(NPEB01229);
+					Patch(NPJB00286);
+				}
+
+
+				char debug_stats[400];
+				sprintf(debug_stats, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nCurrent App: %s [%s]\n\nStatus [%X]\n\nTOC: %X\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\nPARAM.SFO: [%X]\n\nCell Temp: [%i C]     RSX Temp [%i C]\n\n", appName, contentID, sys_process_get_status(sys_process_getpid()), GetTOC(NPUP10028), sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid(), sys_process_get_paramsfo(), GetTempCell(0), GetTempRSX(0));
 				PrintToXMB(debug_stats);
 				
 				/*
@@ -130,27 +159,6 @@ void thread_nopsn(uint64_t arg)
 
 			}
 
-			
-
-
-
-			// TuneIn Radio
-			//sleep(waitPatch);
-			//Patch(NPUP10042);
-
-			// YouTube
-			//GetTOC(NPUP10028);
-			//GetTOC(NPEB01229);
-			//GetTOC(NPJB00286);
-
-			sleep(waitPatch);
-			Patch(NPUP10028);
-			Patch(NPEB01229);
-			Patch(NPJB00286);
-			
-			//YouTube::UNK_TEXT_1("", 0, 0, 0, 0);
-			
-			
 		  }
 	}
 	

@@ -32,6 +32,15 @@ int sys_process_get_status(sys_pid_t pid)
 
 
 
+// Directly Read From Memory
+u32 ReadMemU32(u32 address)
+{
+	system_call_1(6, address);
+	//std::reverse(mem, mem + 4);
+	//return *(UINT32*)read;
+	return_to_user_prog(int);
+}
+
 
 // 1=power,2=status or 3=disk
 int sys_sm_request_led(int led_id, uint8_t led_action)
@@ -40,14 +49,14 @@ int sys_sm_request_led(int led_id, uint8_t led_action)
 	return_to_user_prog(int);
 }
 
+// (STATUS),2 (POWER)(red, green, red+green combined: looks like yellow);
+// 0,1,2,3 (off,on,blink fast, blink slow) 
 int sys_sm_control_led(uint8_t led_id, uint8_t led_action)
 { 
 	system_call_2(386, led_id, led_action);
 	return_to_user_prog(int);
 }
 
-// (STATUS),2 (POWER)(red, green, red+green combined: looks like yellow);
-// 0,1,2,3 (off,on,blink fast, blink slow) 
 int ControlLED(uint8_t led, uint8_t action)
 {
 	sys_sm_control_led(led, action);

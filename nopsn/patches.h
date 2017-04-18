@@ -35,6 +35,43 @@ enum ContentID
 };
 
 
+void GetPatchValues(int cid)
+{
+	switch (cid)
+	{
+		case NPUP10042:
+		memTemp[0] = *(int*)NPUP10042_a[0];
+		memTemp[1] = *(int*)NPUP10042_a[1];
+		memTemp[2] = *(int*)NPUP10042_a[2];
+		isTuneInRadio = true;
+		appName = "TuneIn Radio";
+		contentID = "NPUP10042";
+		break;
+
+		case NPUP10028:
+		memTemp[0] = *(int*)NPUP10028_a[0];
+		isYouTube = true;
+		appName = "YouTube";
+		contentID = "NPUP10028";
+		break;
+
+		case NPEB01229:
+		memTemp[0] = *(int*)NPEB01229_a[0];
+		isYouTube = true;
+		appName = "YouTube";
+		contentID = "NPEB01229";
+		break;
+
+		case NPJB00286:
+		memTemp[0] = *(int*)NPJB00286_a[0];
+		isYouTube = true;
+		appName = "YouTube";
+		contentID = "NPJB00286";
+		break;
+	}
+}
+
+
 
 // NoPSN Main Patch Function
 void Patch(int cid)

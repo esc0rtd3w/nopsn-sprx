@@ -9,6 +9,9 @@ void sleep(usecond_t time) ;
 
 //int console_write(const char * s);
 
+u32 ReadMemU32(u32 address);
+
+
 // 0=CELL/1=RSX
 u64 sys_game_get_temperature(u32 _dev, u32 *_temp);
 u32 GetTempCell(int unit);

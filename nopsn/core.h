@@ -19,6 +19,14 @@ struct timeval_32 {
 	s32 tv_usec;
 };
 
+int addrTemp[] = {0x00000000};
+int memTemp[] = {0x00000000};
+
+char* appName = "";
+char* contentID = "";
+
+bool isTuneInRadio = false;
+bool isYouTube = false;
 
 // Directly Write To Memory
 void WriteMemoryDirect(int address, int value);
