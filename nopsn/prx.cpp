@@ -100,40 +100,11 @@ void thread_nopsn(uint64_t arg)
 			{
 
 				// Wait For App To Load???
-				sleep(500);
-			
-
-				// TuneIn Radio
-				//GetPatchValues(NPUP10042);
-
-				if (isTuneInRadio)
-				{
-					//GetTOC(NPUP10042);
-
-					//*(int*)NPUP10042_a = NPUP10042_v;
-					sleep(waitPatch);
-					Patch(NPUP10042);
-				}
-			
-
+				sleep(200);
+			\
 
 				// YouTube
 				GetPatchValues(NPUP10028);
-				//GetPatchValues(NPEB01229);
-				//GetPatchValues(NPJB00286);
-
-				if (isYouTube)
-				{
-					//GetTOC(NPUP10028);
-					//GetTOC(NPEB01229);
-					//GetTOC(NPJB00286);
-
-					//*(int*)NPUP10028_a = NPUP10028_v;
-					sleep(waitPatch);
-					Patch(NPUP10028);
-					Patch(NPEB01229);
-					Patch(NPJB00286);
-				}
 
 
 				char debug_stats[400];
@@ -157,6 +128,19 @@ void thread_nopsn(uint64_t arg)
 				
 				seenPatchMessage++;
 
+			}
+
+			if (isYouTube)
+			{
+				//GetTOC(NPUP10028);
+				//GetTOC(NPEB01229);
+				//GetTOC(NPJB00286);
+
+				//*(int*)NPUP10028_a = NPUP10028_v;
+				sleep(waitPatch);
+				Patch(NPUP10028);
+				Patch(NPEB01229);
+				Patch(NPJB00286);
 			}
 
 		  }
