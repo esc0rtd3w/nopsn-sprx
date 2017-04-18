@@ -55,7 +55,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="cell.h" />
+    <ClInclude Include="includes.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="dialog.h" />
     <ClInclude Include="messages.h" />

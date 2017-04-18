@@ -14,9 +14,9 @@
 #include <cellstatus.h>
 #include <sys/prx.h>
 
-#include "cell.h"
 #include "core.h"
 #include "dialog.h"
+#include "includes.h"
 #include "messages.h"
 #include "natives.h"
 #include "patches.h"
