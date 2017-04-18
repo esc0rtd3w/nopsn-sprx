@@ -1,5 +1,5 @@
-#ifndef __CELL_H
-#define __CELL_H
+#ifndef __INCLUDES_H
+#define __INCLUDES_H
 
 
 #pragma comment(lib, "sysutil_remoteplay_stub")
