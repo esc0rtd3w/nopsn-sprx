@@ -6,8 +6,10 @@
 #include "natives.h"
 #include "patches.h"
 #include "system.h"
+#include "types.h"
 
 using namespace Dialog;
+
 
 
 void PrintToXMB(char* text)
@@ -17,9 +19,23 @@ void PrintToXMB(char* text)
 }
 
 
-void PrintDebugStats()
+void PrintDebugStats(int type)
 {
 	char debug_stats[400];
-	sprintf(debug_stats, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nCurrent App: %s [%s]\n\nStatus [%X]\n\nTOC: %X\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\nPARAM.SFO: [%X]\n\nCell Temp: [%i C]     RSX Temp [%i C]\n\n", appName, GetCID(), sys_process_get_status(sys_process_getpid()), GetTOC(NPUP10028), sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid(), sys_process_get_paramsfo(), GetTempCell(0), GetTempRSX(0));
+
+	switch (type)
+	{
+		case SHORT:
+			sprintf(debug_stats, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nCurrent App: %s [%s]\n\nTOC: %X\n\nProcess ID: %X\n\nParent Process ID: %X\n\nPPU GUID: %X\n\nPARAM.SFO: [%X]\n\n", appName, GetCID(), GetTOC(NPUP10028), sys_process_getpid(), sys_process_getppid(), sys_process_get_ppu_guid(), sys_process_get_paramsfo());
+			break;
+
+		case LONG:
+			sprintf(debug_stats, "---[ NoPSN SPRX Debug Stats Output ]---\n\n\nCurrent App: %s [%s]\n\nStatus [%X]\n\nTOC: %X\n\nProcess ID: %X     On Stack?: [%X]\n\nParent Process ID: %X     On Stack?: [%X]\n\nPPU GUID: %X\n\nPARAM.SFO: [%X]\n\nCell Temp: [%i C]     RSX Temp [%i C]\n\n", appName, GetCID(), sys_process_get_status(sys_process_getpid()), GetTOC(NPUP10028), sys_process_getpid(), sys_process_is_stack((const void*)sys_process_getpid()), sys_process_getppid(), sys_process_is_stack((const void*)sys_process_getppid()), sys_process_get_ppu_guid(), sys_process_get_paramsfo(), GetTempCell(0), GetTempRSX(0));
+			break;
+
+		default:
+			break;
+	}
+
 	PrintToXMB(debug_stats);
 }
