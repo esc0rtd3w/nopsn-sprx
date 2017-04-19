@@ -45,14 +45,18 @@ enum ContentID
 };
 
 
-void GetCID()
+const char* GetCID()
 {
-	for (int i = 0; i < 9; i++)
+	for (int i; i < 9; i++)
 	{
 		contentID_hex[i] = *(char*)(offset_cid_region + i);
 	}
 
-	
+	sleep(200);
+
+	char buffer[32];
+	sprintf(buffer, "%X%X%X%X%X%X%X%X%X", contentID_hex[0], contentID_hex[1], contentID_hex[2], contentID_hex[3], contentID_hex[4], contentID_hex[5], contentID_hex[6], contentID_hex[7], contentID_hex[8]);
+	return buffer;
 }
 
 
