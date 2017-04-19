@@ -57,6 +57,8 @@ const char* GetCID()
 
 	char buffer[32];
 	sprintf(buffer, "%X%X%X%X%X%X%X%X%X", contentID_hex[0], contentID_hex[1], contentID_hex[2], contentID_hex[3], contentID_hex[4], contentID_hex[5], contentID_hex[6], contentID_hex[7], contentID_hex[8]);
+	//sprintf(buffer, "%s%s%s%s%s%s%s%s%s", HexToString(contentID_hex[0]), HexToString(contentID_hex[1]), HexToString(contentID_hex[2]), HexToString(contentID_hex[3]), HexToString(contentID_hex[4]), HexToString(contentID_hex[5]), HexToString(contentID_hex[6]), HexToString(contentID_hex[7]), HexToString(contentID_hex[8]));
+	
 	return buffer;
 }
 

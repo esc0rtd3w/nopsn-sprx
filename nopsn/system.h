@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include "cell.h"
 #include "types.h"
 
@@ -48,25 +49,6 @@ void printf(int n,...);
 void* va(int n,...);
 
 
-
-
-
-
-/*
- * Function:		ReadHex()
- * File:			main.c
- * Project:			ArtemisPS3-PRX
- * Description:		Converts a hex string into an array of bytes
- *					In cases where the len is less than 4, it will NOT (unlike ReadHexPartial) shift the value over such that something like "011" will be 0x01100000
- * Arguments:
- *	read:			buffer containing string
- *	start:			start index of conversion within buffer
- *	len:			length of hex string
- *	buf:			buffer that will store the resulting byte/char array after conversion
- *	bufSize:		allocated size of buf
- * Return:			Returns pointer to buf
- */
-char * ReadHex(char * read, int start, int len, char * buf, int bufSize);
-
+char* HexToString(int input);
 
 

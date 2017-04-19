@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 #include "includes.h"
 #include "system.h"
 #include "types.h"
@@ -130,29 +129,6 @@ void* va(int n,...)
 }
 
 
-/*
- * Function:		ReadHex()
- * File:			main.c
- * Project:			ArtemisPS3-PRX
- * Description:		Converts a hex string into an array of bytes
- *					In cases where the len is less than 4, it will NOT (unlike ReadHexPartial) shift the value over such that something like "011" will be 0x01100000
- * Arguments:
- *	read:			buffer containing string
- *	start:			start index of conversion within buffer
- *	len:			length of hex string
- *	buf:			buffer that will store the resulting byte/char array after conversion
- *	bufSize:		allocated size of buf
- * Return:			Returns pointer to buf
- */
-char * ReadHex(char * read, int start, int len, char * buf, int bufSize)
-{
-	for (int x = start; x < (len + start); x += 2)
-	{
-		buf[(x - start)/2] = (unsigned char)((((unsigned char)read[x] < 0x41) ? ((unsigned char)read[x] - 0x30) : ((unsigned char)read[x] - 0x37)) << 4) | (unsigned char)(((unsigned char)read[x+1] < 0x41) ? ((unsigned char)read[x+1] - 0x30) : ((unsigned char)read[x+1] - 0x37));
-	}
-	
-	return buf;
-}
 
 
 // Get Temperatures
@@ -218,12 +194,49 @@ u32 GetTempRSX(int unit)
 
 
 
+char* HexToString(int input)
+{
+	char* newByte;
+	
+	if (input == 0x30){ newByte = "0"; }
+	if (input == 0x31){ newByte = "1"; }
+	if (input == 0x32){ newByte = "2"; }
+	if (input == 0x33){ newByte = "3"; }
+	if (input == 0x34){ newByte = "4"; }
+	if (input == 0x35){ newByte = "5"; }
+	if (input == 0x36){ newByte = "6"; }
+	if (input == 0x37){ newByte = "7"; }
+	if (input == 0x38){ newByte = "8"; }
+	if (input == 0x39){ newByte = "9"; }
+	if (input == 0x41){ newByte = "A"; }
+	if (input == 0x42){ newByte = "B"; }
+	if (input == 0x43){ newByte = "C"; }
+	if (input == 0x44){ newByte = "D"; }
+	if (input == 0x45){ newByte = "E"; }
+	if (input == 0x46){ newByte = "F"; }
+	if (input == 0x47){ newByte = "G"; }
+	if (input == 0x48){ newByte = "H"; }
+	if (input == 0x49){ newByte = "I"; }
+	if (input == 0x4A){ newByte = "J"; }
+	if (input == 0x4B){ newByte = "K"; }
+	if (input == 0x4C){ newByte = "L"; }
+	if (input == 0x4D){ newByte = "M"; }
+	if (input == 0x4E){ newByte = "N"; }
+	if (input == 0x4F){ newByte = "O"; }
+	if (input == 0x50){ newByte = "P"; }
+	if (input == 0x51){ newByte = "Q"; }
+	if (input == 0x52){ newByte = "R"; }
+	if (input == 0x53){ newByte = "S"; }
+	if (input == 0x54){ newByte = "T"; }
+	if (input == 0x55){ newByte = "U"; }
+	if (input == 0x56){ newByte = "V"; }
+	if (input == 0x57){ newByte = "W"; }
+	if (input == 0x58){ newByte = "X"; }
+	if (input == 0x59){ newByte = "Y"; }
+	if (input == 0x5A){ newByte = "Z"; }
 
-
-
-
-
-
+	return newByte;
+}
 
 
 
