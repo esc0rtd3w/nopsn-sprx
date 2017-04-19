@@ -47,10 +47,30 @@ enum ContentID
 
 const char* GetCID()
 {
+	/*
 	for (int i; i < 9; i++)
 	{
 		contentID_hex[i] = *(char*)(offset_cid_region + i);
 	}
+	*/
+	
+	contentID_hex[0] = *(char*)(0x01059278);
+	sleep(50);
+	contentID_hex[1] = *(char*)(0x01059279);
+	sleep(50);
+	contentID_hex[2] = *(char*)(0x0105927A);
+	sleep(50);
+	contentID_hex[3] = *(char*)(0x0105927B);
+	sleep(50);
+	contentID_hex[4] = *(char*)(0x0105927C);
+	sleep(50);
+	contentID_hex[5] = *(char*)(0x0105927D);
+	sleep(50);
+	contentID_hex[6] = *(char*)(0x0105927E);
+	sleep(50);
+	contentID_hex[7] = *(char*)(0x0105927F);
+	sleep(50);
+	contentID_hex[8] = *(char*)(0x01059280);
 
 	sleep(200);
 
