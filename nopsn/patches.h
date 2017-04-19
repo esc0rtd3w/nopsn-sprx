@@ -1,10 +1,20 @@
 #pragma once
 
 #include "nopsn.h"
+#include "system.h"
 
 
 // A few basic instructions
 int nop = 0x60000000;
+
+// Virtual In-Memory Address Base
+int offset_base = 0x00010000;
+
+// 4 Bytes (NPUP, NPUO, NPEB, NPEA, NPHA)
+int offset_cid_region = 0x01059278;
+
+// 5 Bytes For Number ID
+int offset_cid_number = 0x0105927C;
 
 
 
@@ -33,6 +43,17 @@ enum ContentID
 	NPEB01229,// YouTube
 	NPJB00286,// YouTube
 };
+
+
+void GetCID()
+{
+	for (int i = 0; i < 9; i++)
+	{
+		contentID_hex[i] = *(char*)(offset_cid_region + i);
+	}
+
+	
+}
 
 
 void GetPatchValues(int cid)
