@@ -106,7 +106,7 @@ void thread_nopsn(uint64_t arg)
 				// YouTube
 				GetPatchValues(NPUP10028);
 
-				PrintDebugStats(LONG);
+				PrintDebugStats(SHORT);
 				
 				/*
 				msgdialog_mode = MODE_STRING_YESNO;
