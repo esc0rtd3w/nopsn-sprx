@@ -4,6 +4,7 @@
 
 #include "nopsn.h"
 #include "system.h"
+#include "timer.h"
 
 using namespace std;
 
@@ -22,6 +23,8 @@ int offset_cid_number = 0x0105927C;
 
 const int HEX = 0;
 const int STRING = 1;
+
+bool cmp = false;
 
 
 // List of Regions
@@ -87,109 +90,48 @@ char* GetCID()
 }
 
 
-void GetPatchValues(int cid)
-{
-	switch (cid)
-	{
-		case NPUP10042:
-		memTemp[0] = *(int*)NPUP10042_a[0];
-		memTemp[1] = *(int*)NPUP10042_a[1];
-		memTemp[2] = *(int*)NPUP10042_a[2];
-		isTuneInRadio = true;
-		appName = "TuneIn Radio";
-		contentID = "NPUP10042";
-		break;
-
-		// NPEB01229 and NPJB00286 also share the same NPUP10028 ID.
-		case NPUP10028:
-		memTemp[0] = *(int*)NPUP10028_a[0];
-		isYouTube = true;
-		appName = "YouTube";
-		contentID = "NPUP10028";
-		break;
-
-		/* 
-		// Doesn't exist (uses USA ID)
-		case NPEB01229:
-		memTemp[0] = *(int*)NPEB01229_a[0];
-		isYouTube = true;
-		appName = "YouTube";
-		contentID = "NPEB01229";
-		break;
-
-		// Doesn't exist (uses USA ID)
-		case NPJB00286:
-		memTemp[0] = *(int*)NPJB00286_a[0];
-		isYouTube = true;
-		appName = "YouTube";
-		contentID = "NPJB00286";
-		break;
-		*/
-	}
-}
-
-
-
 // NoPSN Main Patch Function
-void Patch(int cid)
+//void Patch(char* cid, bool active)
+void Patch(char* cid)
 {
-	// Check Content ID
-	switch (cid) {
+	cmp = cstrcmp(cid, "NPUP10042");
+	if (cmp)
+	{
+		memTemp[0] = *(int*)NPUP10042_a[0];
+		sleep(200);
+		memTemp[1] = *(int*)NPUP10042_a[1];
+		sleep(200);
+		memTemp[2] = *(int*)NPUP10042_a[2];
+		sleep(200);
+		appName = "TuneIn Radio";
+		toc = 0x0076E790;
 
-		// TuneIn Radio
-		case NPUP10042:
-			WriteMemoryDirect(NPUP10042_a[0], nop);
-			WriteMemoryDirect(NPUP10042_a[1], nop);
-			WriteMemoryDirect(NPUP10042_a[2], nop);
-			break;
+		sleep(waitPatch);
+		WriteMemoryDirect(NPUP10042_a[0], nop);
+		sleep(500);
+		WriteMemoryDirect(NPUP10042_a[1], nop);
+		sleep(500);
+		WriteMemoryDirect(NPUP10042_a[2], nop);
 
-		// YouTube
-		case NPUP10028:
-			WriteMemoryDirect(NPUP10028_a[0], nop);
-			break;
-		case NPEB01229:
-			WriteMemoryDirect(NPEB01229_a[0], nop);
-			break;
-		case NPJB00286:
-			WriteMemoryDirect(NPJB00286_a[0], nop);
-			break;
+		cmp = false;
+	}
+	
+	// NPEB01229 and NPJB00286 also share the same NPUP10028 ID.
+	cmp = cstrcmp(cid, "NPUP10028");
+	if (cmp)
+	{
+		memTemp[0] = *(int*)NPUP10028_a[0];
+		sleep(200);
+		appName = "YouTube";
+		toc = 0x012A27F8;
+		
+		sleep(waitPatch);
+		WriteMemoryDirect(NPUP10028_a[0], nop);
 
-		default:
-			break;
-	};
+		cmp = false;
 
-}
+	}
 
-
-int GetTOC(int cid)
-{
-	int toc;
-
-	// Check Content ID
-	switch (cid) {
-
-		// TuneIn Radio
-		case NPUP10042:
-			toc = 0x0076E790;
-			break;
-
-		// YouTube
-		case NPUP10028:
-			toc = 0x012A27F8;
-			break;
-		case NPEB01229:
-			toc = 0x012A27F8;
-			break;
-		case NPJB00286:
-			toc = 0x012A27F8;
-			break;
-
-		default:
-			break;
-	};
-
-
-	return toc;
 }
 
 

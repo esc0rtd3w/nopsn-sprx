@@ -4,9 +4,15 @@
 #include "types.h"
 
 
+// For Addresses
 int TOC;
 
+// For Patch Info
+int toc;
+
+
 int UNK_TEXT_1 = 0x009AAE9C;
+
 
 
 // Memory Related
@@ -15,7 +21,6 @@ int memTemp[] = {0x00000000};
 char* appName = "";
 char* contentID = "";
 int contentID_hex[9];
-
 
 // Used For Debug Stats
 const int SHORT = 0;

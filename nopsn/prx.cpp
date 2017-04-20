@@ -102,10 +102,17 @@ void thread_nopsn(uint64_t arg)
 				// Wait For App To Load???
 				sleep(200);
 			
+				// Get ContentID as String
+				contentID = GetCID();
 
-				// YouTube
-				GetPatchValues(NPUP10028);
+				sleep(100);
 
+				
+				// Run Main No PSN Patch
+				Patch(contentID);
+
+
+				// Print Debug Message
 				PrintDebugStats(SHORT);
 				
 				/*
@@ -127,18 +134,7 @@ void thread_nopsn(uint64_t arg)
 
 			}
 
-			if (isYouTube)
-			{
-				//GetTOC(NPUP10028);
-				//GetTOC(NPEB01229);
-				//GetTOC(NPJB00286);
-
-				//*(int*)NPUP10028_a = NPUP10028_v;
-				sleep(waitPatch);
-				Patch(NPUP10028);
-				Patch(NPEB01229);
-				Patch(NPJB00286);
-			}
+			// Run Stuff Here While Looping
 
 		  }
 	}
