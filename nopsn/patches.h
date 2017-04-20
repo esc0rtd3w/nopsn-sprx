@@ -14,11 +14,9 @@ int nop = 0x60000000;
 // Virtual In-Memory Address Base
 int offset_base = 0x00010000;
 
-// 4 Bytes (NPEA, NPEB, NPHA, NPUO, NPUP)
-int offset_cid_region = 0x01059278;
 
-// 5 Bytes For Number ID
-int offset_cid_number = 0x0105927C;
+int offset_cid_NPUP10042 = 0x00651EEF;// TuneIn Radio
+int offset_cid_NPUP10028 = 0x01059278;// YouTube
 
 
 const int HEX = 0;
@@ -62,7 +60,7 @@ char* GetCID()
 	
 	for (int i; i < 9; i++)
 	{
-		contentID_hex[i] = *(char*)(offset_cid_region + i);
+		contentID_hex[i] = *(char*)(offset_cid_NPUP10028 + i);
 	}
 
 	sleep(200);
@@ -94,37 +92,47 @@ char* GetCID()
 //void Patch(char* cid, bool active)
 void Patch(char* cid)
 {
+	// TuneIn Radio
 	cmp = cstrcmp(cid, "NPUP10042");
 	if (cmp)
 	{
-		memTemp[0] = *(int*)NPUP10042_a[0];
-		sleep(200);
-		memTemp[1] = *(int*)NPUP10042_a[1];
-		sleep(200);
-		memTemp[2] = *(int*)NPUP10042_a[2];
-		sleep(200);
+		// Read Current Values
+		//memTemp[0] = *(int*)NPUP10042_a[0];
+		//sleep(200);
+		//memTemp[1] = *(int*)NPUP10042_a[1];
+		//sleep(200);
+		//memTemp[2] = *(int*)NPUP10042_a[2];
+		//sleep(200);
+
+		// Set App Info In Memory
 		appName = "TuneIn Radio";
 		toc = 0x0076E790;
 
-		sleep(waitPatch);
-		WriteMemoryDirect(NPUP10042_a[0], nop);
-		sleep(500);
-		WriteMemoryDirect(NPUP10042_a[1], nop);
-		sleep(500);
-		WriteMemoryDirect(NPUP10042_a[2], nop);
+		// Apply Patches
+		//sleep(waitPatch);
+		//WriteMemoryDirect(NPUP10042_a[0], nop);
+		//sleep(500);
+		//WriteMemoryDirect(NPUP10042_a[1], nop);
+		//sleep(500);
+		//WriteMemoryDirect(NPUP10042_a[2], nop);
 
 		cmp = false;
 	}
 	
+	// YouTube
 	// NPEB01229 and NPJB00286 also share the same NPUP10028 ID.
 	cmp = cstrcmp(cid, "NPUP10028");
 	if (cmp)
 	{
-		memTemp[0] = *(int*)NPUP10028_a[0];
-		sleep(200);
+		// Read Current Values
+		//memTemp[0] = *(int*)NPUP10028_a[0];
+		//sleep(200);
+
+		// Set App Info In Memory
 		appName = "YouTube";
 		toc = 0x012A27F8;
 		
+		// Apply Patches
 		sleep(waitPatch);
 		WriteMemoryDirect(NPUP10028_a[0], nop);
 
