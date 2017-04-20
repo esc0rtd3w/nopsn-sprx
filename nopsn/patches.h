@@ -1,8 +1,11 @@
 #pragma once
 
+#include <stdio.h>
+
 #include "nopsn.h"
 #include "system.h"
 
+using namespace std;
 
 // A few basic instructions
 int nop = 0x60000000;
@@ -10,20 +13,25 @@ int nop = 0x60000000;
 // Virtual In-Memory Address Base
 int offset_base = 0x00010000;
 
-// 4 Bytes (NPUP, NPUO, NPEB, NPEA, NPHA)
+// 4 Bytes (NPEA, NPEB, NPHA, NPUO, NPUP)
 int offset_cid_region = 0x01059278;
 
 // 5 Bytes For Number ID
 int offset_cid_number = 0x0105927C;
 
 
+const int HEX = 0;
+const int STRING = 1;
+
 
 // List of Regions
 enum Region
 {
-	us,
-	eu,
-	jp,
+	NPEA,
+	NPEB,
+	NPHA,
+	NPUO,
+	NPUP,
 };
 
 // List of all PSN Apps by NAME
@@ -45,7 +53,8 @@ enum ContentID
 };
 
 
-const char* GetCID()
+//char* GetCID(int format)
+char* GetCID()
 {
 	
 	for (int i; i < 9; i++)
@@ -54,10 +63,25 @@ const char* GetCID()
 	}
 
 	sleep(200);
-
+	
 	char buffer[32];
-	sprintf(buffer, "%X%X%X%X%X%X%X%X%X", contentID_hex[0], contentID_hex[1], contentID_hex[2], contentID_hex[3], contentID_hex[4], contentID_hex[5], contentID_hex[6], contentID_hex[7], contentID_hex[8]);
-	//sprintf(buffer, "%s%s%s%s%s%s%s%s%s", HexToString(contentID_hex[0]), HexToString(contentID_hex[1]), HexToString(contentID_hex[2]), HexToString(contentID_hex[3]), HexToString(contentID_hex[4]), HexToString(contentID_hex[5]), HexToString(contentID_hex[6]), HexToString(contentID_hex[7]), HexToString(contentID_hex[8]));
+	sprintf(buffer, "%c%c%c%c%c%c%c%c%c", contentID_hex[0], contentID_hex[1], contentID_hex[2], contentID_hex[3], contentID_hex[4], contentID_hex[5], contentID_hex[6], contentID_hex[7], contentID_hex[8]);
+
+	/*
+	switch (format)
+	{
+		case HEX:
+			sprintf(buffer, "%X%X%X%X%X%X%X%X%X", contentID_hex[0], contentID_hex[1], contentID_hex[2], contentID_hex[3], contentID_hex[4], contentID_hex[5], contentID_hex[6], contentID_hex[7], contentID_hex[8]);
+			break;
+		
+		case STRING:
+			sprintf(buffer, "%c%c%c%c%c%c%c%c%c", contentID_hex[0], contentID_hex[1], contentID_hex[2], contentID_hex[3], contentID_hex[4], contentID_hex[5], contentID_hex[6], contentID_hex[7], contentID_hex[8]);
+			break;
+
+		default:
+			break;
+	}
+	*/
 	
 	return buffer;
 }
@@ -76,6 +100,7 @@ void GetPatchValues(int cid)
 		contentID = "NPUP10042";
 		break;
 
+		// NPEB01229 and NPJB00286 also share the same NPUP10028 ID.
 		case NPUP10028:
 		memTemp[0] = *(int*)NPUP10028_a[0];
 		isYouTube = true;
@@ -83,6 +108,8 @@ void GetPatchValues(int cid)
 		contentID = "NPUP10028";
 		break;
 
+		/* 
+		// Doesn't exist (uses USA ID)
 		case NPEB01229:
 		memTemp[0] = *(int*)NPEB01229_a[0];
 		isYouTube = true;
@@ -90,12 +117,14 @@ void GetPatchValues(int cid)
 		contentID = "NPEB01229";
 		break;
 
+		// Doesn't exist (uses USA ID)
 		case NPJB00286:
 		memTemp[0] = *(int*)NPJB00286_a[0];
 		isYouTube = true;
 		appName = "YouTube";
 		contentID = "NPJB00286";
 		break;
+		*/
 	}
 }
 

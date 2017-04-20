@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdio.h>
 
 #include "cell.h"
 #include "types.h"
@@ -49,6 +50,7 @@ void printf(int n,...);
 void* va(int n,...);
 
 
+char* DecToString(int input);
 char* HexToString(int input);
 
 

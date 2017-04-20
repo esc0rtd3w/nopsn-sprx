@@ -193,6 +193,50 @@ u32 GetTempRSX(int unit)
 }
 
 
+char* DecToString(int input)
+{
+	char* newByte;
+	
+	if (input == 48){ newByte = "0"; }
+	if (input == 49){ newByte = "1"; }
+	if (input == 50){ newByte = "2"; }
+	if (input == 51){ newByte = "3"; }
+	if (input == 52){ newByte = "4"; }
+	if (input == 53){ newByte = "5"; }
+	if (input == 54){ newByte = "6"; }
+	if (input == 55){ newByte = "7"; }
+	if (input == 56){ newByte = "8"; }
+	if (input == 57){ newByte = "9"; }
+	if (input == 65){ newByte = "A"; }
+	if (input == 66){ newByte = "B"; }
+	if (input == 67){ newByte = "C"; }
+	if (input == 68){ newByte = "D"; }
+	if (input == 69){ newByte = "E"; }
+	if (input == 70){ newByte = "F"; }
+	if (input == 71){ newByte = "G"; }
+	if (input == 72){ newByte = "H"; }
+	if (input == 73){ newByte = "I"; }
+	if (input == 74){ newByte = "J"; }
+	if (input == 75){ newByte = "K"; }
+	if (input == 76){ newByte = "L"; }
+	if (input == 77){ newByte = "M"; }
+	if (input == 78){ newByte = "N"; }
+	if (input == 79){ newByte = "O"; }
+	if (input == 80){ newByte = "P"; }
+	if (input == 81){ newByte = "Q"; }
+	if (input == 82){ newByte = "R"; }
+	if (input == 83){ newByte = "S"; }
+	if (input == 84){ newByte = "T"; }
+	if (input == 85){ newByte = "U"; }
+	if (input == 86){ newByte = "V"; }
+	if (input == 87){ newByte = "W"; }
+	if (input == 88){ newByte = "X"; }
+	if (input == 89){ newByte = "Y"; }
+	if (input == 90){ newByte = "Z"; }
+
+	return newByte;
+}
+
 
 char* HexToString(int input)
 {
