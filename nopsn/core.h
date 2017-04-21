@@ -45,4 +45,6 @@ struct timeval_32 {
 
 
 // Directly Write To Memory
-void WriteMemoryDirect(int address, int value);
+void WriteInt(int address, int value);
+int* ReadInt(int address, int length);
+

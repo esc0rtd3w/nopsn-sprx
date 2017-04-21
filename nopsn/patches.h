@@ -92,7 +92,7 @@ void Patch(char* cid)
 
 		// Apply Patches
 		//sleep(waitPatch);
-		//WriteMemoryDirect(NPEB02210_a[0], bytes_false);
+		//WriteInt(NPEB02210_a[0], bytes_false);
 
 		cmp = false;
 	}
@@ -112,9 +112,9 @@ void Patch(char* cid)
 
 		// Apply Patches
 		//sleep(waitPatch);
-		//WriteMemoryDirect(NPUP10042_a[0], nop);
-		//WriteMemoryDirect(NPUP10042_a[1], nop);
-		//WriteMemoryDirect(NPUP10042_a[2], nop);
+		//WriteInt(NPUP10042_a[0], nop);
+		//WriteInt(NPUP10042_a[1], nop);
+		//WriteInt(NPUP10042_a[2], nop);
 
 		cmp = false;
 	}
@@ -133,7 +133,7 @@ void Patch(char* cid)
 		
 		// Apply Patches
 		sleep(waitPatch);
-		WriteMemoryDirect(NPUP10028_a[0], nop);
+		WriteInt(NPUP10028_a[0], nop);
 
 		cmp = false;
 
