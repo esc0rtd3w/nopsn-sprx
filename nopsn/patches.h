@@ -10,8 +10,8 @@ using namespace std;
 
 // A few basic instructions
 int nop = 0x60000000;
-int bytes_false = 0x66616C7365;
-int bytes_true = 0x747275650D;
+u64 bytes_false = 0x66616C7365;
+u64 bytes_true = 0x747275650D;
 
 // Virtual In-Memory Address Base
 int offset_base = 0x00010000;
@@ -38,37 +38,7 @@ enum Region
 	NPUP,
 };
 
-// List of all PSN Apps by NAME
-enum Name
-{
-	tunein_radio,
-	youtube,
-};
 
-
-// List of all PSN Apps by CONTENT_ID
-enum ContentID
-{
-	NPUP10028,// YouTube
-	NPUP10042,// TuneIn Radio
-	NPEB01831,// TuneIn Radio
-	NPEB01229,// YouTube
-	NPJB00286,// YouTube
-};
-
-
-struct AppInfo
-{
-	char* name;
-	char* cid;
-	int cid_hex;
-	int patch_offset;
-	int patch_bytes;
-	int toc;
-	int opd;
-	int import_table;
-	int export_table;
-};
 
 
 //char* GetCID(int format)
@@ -133,11 +103,8 @@ void Patch(char* cid)
 	{
 		// Read Current Values
 		//memTemp[0] = *(int*)NPUP10042_a[0];
-		//sleep(200);
 		//memTemp[1] = *(int*)NPUP10042_a[1];
-		//sleep(200);
 		//memTemp[2] = *(int*)NPUP10042_a[2];
-		//sleep(200);
 
 		// Set App Info In Memory
 		appName = "TuneIn Radio";
@@ -146,9 +113,7 @@ void Patch(char* cid)
 		// Apply Patches
 		//sleep(waitPatch);
 		//WriteMemoryDirect(NPUP10042_a[0], nop);
-		//sleep(500);
 		//WriteMemoryDirect(NPUP10042_a[1], nop);
-		//sleep(500);
 		//WriteMemoryDirect(NPUP10042_a[2], nop);
 
 		cmp = false;
@@ -161,7 +126,6 @@ void Patch(char* cid)
 	{
 		// Read Current Values
 		//memTemp[0] = *(int*)NPUP10028_a[0];
-		//sleep(200);
 
 		// Set App Info In Memory
 		appName = "YouTube";

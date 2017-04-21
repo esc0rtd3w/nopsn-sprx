@@ -56,16 +56,16 @@ typedef s64 system_time_t;
 
 
 
-// Patch Info
 typedef struct
 {
 	char* name;
 	char* cid;
-	char* region;
+	int cid_hex;
+	int patch_offset;
+	int patch_bytes;
 	int toc;
-	int addr;
-	int value;
-}PatchInfo;
-
-
+	int opd;
+	int import_table;
+	int export_table;
+}AppInfo;
 

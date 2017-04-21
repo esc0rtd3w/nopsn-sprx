@@ -76,7 +76,7 @@ bool threadClosed = false;
 // NoPSN Main Thread
 void thread_nopsn(uint64_t arg)
 {		
-
+	// While Thread Is Open
 	while (!threadClosed)
 	{
 		
@@ -94,50 +94,36 @@ void thread_nopsn(uint64_t arg)
 		  if (isTimerReady())
 		  {
 			
-			
-
+			// Stuff Below Will Run Once
 			if (seenPatchMessage == 0)
 			{
-
 				// Wait For App To Load???
 				sleep(200);
 			
 				// Get ContentID as String
 				contentID = GetCID();
 
+				// We like sleepy time ;)
 				sleep(100);
 
-				
 				// Run Main No PSN Patch
 				Patch(contentID);
-
 
 				// Print Debug Message
 				PrintDebugStats(SHORT);
 				
-				/*
-				msgdialog_mode = MODE_STRING_YESNO;
-				ShowYESNO("Apply NoPSN Patch Now?");
-
-				while(!Finished)
-				{
-					//
-				}
-
-				bool ret = YESNO; 
-				
-				End();
-				*/
-
-				
+				// Increase counter so this only runs once
 				seenPatchMessage++;
 
-			}
+			}// End of seenPatchMessage RunOnce
+
 
 			// Run Stuff Here While Looping
 
-		  }
-	}
+
+		  }// End of IsTimerReady
+
+	}// End of For(;;) Loop
 	
 
 
@@ -169,40 +155,44 @@ void thread_nopsn(uint64_t arg)
 
 	sleep(200);
 
-	}
+	}// End of Thread Not Closed
 		   
     sys_ppu_thread_exit();
 
 
-}
+}// End of NoPSN Thread
 
 
 // NoAds Main Thread
 void thread_noads(uint64_t arg)
 {		
+	// While Thread Is Open
 	while (!threadClosed)
 	{
 
 	for (;;)
 	{
+
       if (isTimerReady())
       {
+		  // Exiting Thread Until We Have Something To Put Here!!!
 		  sleep(200);
           sys_ppu_thread_exit();
-      }
-	}
+
+      }// End of IsTimerReady
+
+	}// End of For(;;) Loop
 	
 
-
-
+	// Run Stuff Here While Looping
 	sleep(200);
 
-	}
+	}// End of Thread Not Closed
 
     sys_ppu_thread_exit();
 
 
-}
+}// End of NoPSN Thread
 
 
 
@@ -218,7 +208,6 @@ extern "C" int _nopsn_main_prx_entry(void)
 
 	// Create NoAds Thread
 	create_thread(thread_noads, 0x4AB, 0x6000, "NoPSN___AD_REMOVAL");
-	return 0;
 
     return SYS_PRX_RESIDENT;
 }

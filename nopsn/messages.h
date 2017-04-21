@@ -16,6 +16,20 @@ void PrintToXMB(char* text)
 {
 	msgdialog_mode = MODE_STRING_OK;
 	Show(text);
+
+	/*
+	msgdialog_mode = MODE_STRING_YESNO;
+	ShowYESNO("Apply NoPSN Patch Now?");
+
+	while(!Finished)
+	{
+		//
+	}
+
+	bool ret = YESNO; 
+				
+	End();
+	*/
 }
 
 
