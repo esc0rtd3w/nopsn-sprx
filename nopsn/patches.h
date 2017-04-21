@@ -10,11 +10,14 @@ using namespace std;
 
 // A few basic instructions
 int nop = 0x60000000;
+int bytes_false = 0x66616C7365;
+int bytes_true = 0x747275650D;
 
 // Virtual In-Memory Address Base
 int offset_base = 0x00010000;
 
 
+int offset_cid_NPEB02210 = 0x0026E7B1;// Blockbuster
 int offset_cid_NPUP10042 = 0x00651EEF;// TuneIn Radio
 int offset_cid_NPUP10028 = 0x01059278;// YouTube
 
@@ -54,10 +57,24 @@ enum ContentID
 };
 
 
+struct AppInfo
+{
+	char* name;
+	char* cid;
+	int cid_hex;
+	int patch_offset;
+	int patch_bytes;
+	int toc;
+	int opd;
+	int import_table;
+	int export_table;
+};
+
+
 //char* GetCID(int format)
 char* GetCID()
 {
-	
+
 	for (int i; i < 9; i++)
 	{
 		contentID_hex[i] = *(char*)(offset_cid_NPUP10028 + i);
@@ -92,6 +109,24 @@ char* GetCID()
 //void Patch(char* cid, bool active)
 void Patch(char* cid)
 {
+	// Blockbuster
+	cmp = cstrcmp(cid, "NPEB02210");
+	if (cmp)
+	{
+		// Read Current Values
+		//memTemp[0] = *(int*)NPEB02210_a[0];
+
+		// Set App Info In Memory
+		appName = "Blockbuster";
+		toc = 0x002CB578;
+
+		// Apply Patches
+		//sleep(waitPatch);
+		//WriteMemoryDirect(NPEB02210_a[0], bytes_false);
+
+		cmp = false;
+	}
+
 	// TuneIn Radio
 	cmp = cstrcmp(cid, "NPUP10042");
 	if (cmp)
