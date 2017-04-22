@@ -14,22 +14,17 @@ int toc;
 int UNK_TEXT_1 = 0x009AAE9C;
 
 
-
 // Memory Related
 int addrTemp[] = {0x00000000};
 int memTemp[] = {0x00000000};
 char* appName = "";
 char* contentID = "";
 int contentID_hex[9];
+//u8 paramSFO;
 
 // Used For Debug Stats
 const int SHORT = 0;
 const int LONG = 1;
-
-
-// Bools for currently running app
-bool isTuneInRadio = false;
-bool isYouTube = false;
 
 
 struct opd_s
@@ -44,7 +39,7 @@ struct timeval_32 {
 };
 
 
-// Directly Write To Memory
+s32 write_process(u64 ea, const void * data, u32 size);
 void WriteInt(int address, int value);
 int* ReadInt(int address, int length);
 

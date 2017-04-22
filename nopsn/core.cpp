@@ -5,6 +5,13 @@
 
 
 
+s32 write_process(u64 ea, const void * data, u32 size)
+{
+	system_call_4(905, (uint64_t)sys_process_getpid(), ea, size, (u64)data);
+	return_to_user_prog(int32_t);
+}
+
+
 // Write Memory
 void WriteInt(int address, int value)
 {

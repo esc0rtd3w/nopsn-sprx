@@ -30,7 +30,7 @@ int ControlLED(uint8_t led, uint8_t action);
 
 int sys_process_get_status(sys_pid_t pid);
 
-s32 sys_process_get_paramsfo();
+u64 GetParamSFO(uint8_t buffer);
 
 void GetProcessNumberOfObjects(u32 pid, size_t count);
 

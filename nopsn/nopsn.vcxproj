@@ -62,6 +62,7 @@
     <ClInclude Include="dialog.h" />
     <ClInclude Include="messages.h" />
     <ClInclude Include="natives.h" />
+    <ClInclude Include="web.h" />
     <ClInclude Include="noads.h" />
     <ClInclude Include="nopsn.h" />
     <ClInclude Include="patches.h" />
