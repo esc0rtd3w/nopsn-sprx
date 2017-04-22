@@ -6,6 +6,8 @@
 #include "types.h"
 
 
+// Set Default Current App
+app currentApp;
 
 void sleep(usecond_t time) ;
 
@@ -30,7 +32,7 @@ int ControlLED(uint8_t led, uint8_t action);
 
 int sys_process_get_status(sys_pid_t pid);
 
-u64 GetParamSFO(uint8_t buffer);
+void GetParamSFO(uint8_t buffer);
 
 void GetProcessNumberOfObjects(u32 pid, size_t count);
 

@@ -60,12 +60,12 @@ typedef struct
 {
 	char* name;
 	char* cid;
-	int cid_hex;
+	char* cid_hex;
 	int patch_offset;
 	int patch_bytes;
-	int toc;
 	int opd;
+	int toc;
 	int import_table;
 	int export_table;
-}AppInfo;
+}app;
 

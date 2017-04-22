@@ -63,10 +63,10 @@ int ControlLED(uint8_t led, uint8_t action)
 }
 
 
-u64 GetParamSFO(uint8_t buffer)
+void GetParamSFO(uint8_t buffer)
 {
     //system_call_2(30, sys_process_getpid(), buffer);
-	//return_to_user_prog(u64);
+	//return_to_user_prog(int);
 }
 
 

@@ -7,9 +7,6 @@
 // For Addresses
 int TOC;
 
-// For Patch Info
-int toc;
-
 
 int UNK_TEXT_1 = 0x009AAE9C;
 
@@ -19,6 +16,7 @@ int addrTemp[] = {0x00000000};
 int memTemp[] = {0x00000000};
 char* appName = "";
 char* contentID = "";
+int appTOC;
 int contentID_hex[9];
 //u8 paramSFO;
 

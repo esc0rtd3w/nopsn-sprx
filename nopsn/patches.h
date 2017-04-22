@@ -28,6 +28,7 @@ const int STRING = 1;
 bool cmp = false;
 
 
+
 // List of Regions
 enum Region
 {
@@ -83,12 +84,25 @@ void Patch(char* cid)
 	cmp = cstrcmp(cid, "NPEB02210");
 	if (cmp)
 	{
+		app currentApp = 
+		{
+			"Blockbuster",
+			"NPEB02210",
+			"4E5045423032323130",
+			0x01059278,
+			0x60000000,
+			0x002B3B90,
+			0x002CB578,
+			0x0026C628,
+			0x0026C684
+		};
+
 		// Read Current Values
 		//memTemp[0] = *(int*)NPEB02210_a[0];
 
 		// Set App Info In Memory
-		appName = "Blockbuster";
-		toc = 0x002CB578;
+		appName = currentApp.name;
+		appTOC = currentApp.toc;
 
 		// Apply Patches
 		//sleep(waitPatch);
@@ -101,14 +115,27 @@ void Patch(char* cid)
 	cmp = cstrcmp(cid, "NPUP10042");
 	if (cmp)
 	{
+		app currentApp = 
+		{
+			"TuneIn Radio",
+			"NPUP10042",
+			"4E5055503130303432",
+			0x00000000,
+			0x00000000,
+			0x00000000,
+			0x0076E790,
+			0x00000000,
+			0x00000000
+		};
+
 		// Read Current Values
 		//memTemp[0] = *(int*)NPUP10042_a[0];
 		//memTemp[1] = *(int*)NPUP10042_a[1];
 		//memTemp[2] = *(int*)NPUP10042_a[2];
 
 		// Set App Info In Memory
-		appName = "TuneIn Radio";
-		toc = 0x0076E790;
+		appName = currentApp.name;
+		appTOC = currentApp.toc;
 
 		// Apply Patches
 		//sleep(waitPatch);
@@ -124,16 +151,29 @@ void Patch(char* cid)
 	cmp = cstrcmp(cid, "NPUP10028");
 	if (cmp)
 	{
+		app currentApp = 
+		{
+			"YouTube",
+			"NPUP10028",
+			"4E5055503130303238",
+			0x00065F30,
+			0x60000000,
+			0x00000000,
+			0x012A27F8,
+			0x00000000,
+			0x00000000
+		};
+
 		// Read Current Values
 		//memTemp[0] = *(int*)NPUP10028_a[0];
 
 		// Set App Info In Memory
-		appName = "YouTube";
-		toc = 0x012A27F8;
+		appName = currentApp.name;
+		appTOC = currentApp.toc;
 		
 		// Apply Patches
 		sleep(waitPatch);
-		WriteInt(NPUP10028_a[0], nop);
+		WriteInt(currentApp.patch_offset, currentApp.patch_bytes);
 
 		cmp = false;
 
