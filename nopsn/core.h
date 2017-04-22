@@ -40,6 +40,16 @@ struct timeval_32 {
 
 
 s32 write_process(u64 ea, const void * data, u32 size);
+
 void WriteInt(int address, int value);
+void WriteInt32(int Address, int Input);
+void WriteFloat(int address, float* input, int length);
+void WriteBytes(int address, char* input, int length);
+void WriteString(int address, char* string);
+
 int* ReadInt(int address, int length);
+int ReadInt32(int Address);
+float* ReadFloat(int address, int length);
+char* ReadBytes(int address, int length);
+char* ReadString(int address);
 
